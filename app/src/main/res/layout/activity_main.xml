@@ -193,7 +193,7 @@
                 android:text="In set" />
 
             <TextView
-                android:id="@+id/textView_b_set_num"
+                android:id="@+id/textView_b_set_score"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@id/textView_b_set"

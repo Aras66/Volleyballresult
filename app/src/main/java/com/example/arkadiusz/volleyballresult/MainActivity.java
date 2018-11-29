@@ -1,5 +1,6 @@
 package com.example.arkadiusz.volleyballresult;
 
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.TextureView;
@@ -20,31 +21,44 @@ public class MainActivity extends AppCompatActivity {
         TextView displayA = findViewById(R.id.textView_a_score_num);
         displayA.setText(String.valueOf(wynikA));
     }
-    public void displayPointB(int wynikA){
+    public void displayPointB(int wynikB){
         TextView displayA = findViewById(R.id.textView_b_score_num);
         displayA.setText(String.valueOf(wynikB));
     }
-    public void displayChangeA(int wynikB){
+    public void displayChangeA(int changeA){
         TextView displayB = findViewById(R.id.textView_a_change_num);
-        displayB.setText(String.valueOf(wynikB));
+        if(changeA==6){displayB.setTextColor(Color.RED);}
+        else {displayB.setTextColor(Color.BLACK);}
+        displayB.setText(String.valueOf(changeA));
     }
-    public void displayChangeB(int wynikB){
+    public void displayChangeB(int changeB){
         TextView displayB = findViewById(R.id.textView_b_change_num);
-        displayB.setText(String.valueOf(wynikB));
+        if(changeB==6){displayB.setTextColor(Color.RED);}
+        else {displayB.setTextColor(Color.BLACK);}
+        displayB.setText(String.valueOf(changeB));
     }
     public void displaySetA(int setA){
-        TextView displayB = findViewById(R.id.textView_a_score_num);
+        TextView displayB = findViewById(R.id.textView_a_set_score);
         displayB.setText(String.valueOf(setA));
     }
     public void displaySetB(int setB){
-        TextView displayB = findViewById(R.id.textView_b_score_num);
+        TextView displayB = findViewById(R.id.textView_b_set_score);
         displayB.setText(String.valueOf(setB));
     }
 
     public void addPointA(View v){
         wynikA = wynikA + 1;
+        if(setA==2 && setB==2){
+            if(wynikA>= 13){
+                if(wynikA>=15 && wynikB+2<= wynikA){
+                    setA = setA+1;
+                    displaySetA(setA);
+                    newSet();
+                }
+        }
+        }
         if(wynikA>= 23){
-            if(wynikA>=25 && wynikB<= wynikA+2){
+            if(wynikA>=25 && wynikB+2<= wynikA){
                 setA = setA+1;
                 displaySetA(setA);
                 newSet();
@@ -55,15 +69,43 @@ public class MainActivity extends AppCompatActivity {
     }
     public void addPointB(View v){
         wynikB = wynikB + 1;
+        if(setA==2 && setB==2){
+            if(wynikB>= 13){
+                if(wynikB>=15 && wynikA+2<= wynikB){
+                    setB = setB+1;
+                    displaySetB(setB);
+                    newSet();
+                }
+            }
+        }
+        if(wynikB>= 23){
+            if(wynikB>=25 && wynikA+2<= wynikB){
+                setB = setB+1;
+                displaySetB(setB);
+                newSet();
+
+            }
+        }
         displayPointB(wynikB);
     }
     public void addChangeA(View v){
-        changeA = changeA + 1;
-        displayChangeA(changeA);
+        if(changeA<6){
+            changeA = changeA + 1;
+            displayChangeA(changeA);
+        }
+        if(changeA>=6){
+            Toast.makeText(this, "all changes were used", Toast.LENGTH_SHORT).show();
+        }
+        
     }
     public void addChangeB(View v){
-        changeB = changeB + 1;
-        displayChangeB(changeB);
+        if(changeB<6){
+            changeB = changeB + 1;
+            displayChangeB(changeB);
+        }
+        if(changeB>=6){
+            Toast.makeText(this, "all changes were used", Toast.LENGTH_SHORT).show();
+        }
     }
     public void resetButt(View v){
         wynikB = 0; wynikA =0; setA = 0;setB = 0;changeA = 0;changeB = 0;
@@ -71,6 +113,8 @@ public class MainActivity extends AppCompatActivity {
         displayPointB(wynikB);
         displayChangeA(changeA);
         displayChangeB(changeB);
+        displaySetA(setA);
+        displaySetB(setB);
         Toast.makeText(this, "reset of results", Toast.LENGTH_SHORT).show();
     }
     public void newSet(){
@@ -81,4 +125,5 @@ public class MainActivity extends AppCompatActivity {
         displayChangeB(changeB);
         Toast.makeText(this, "new set", Toast.LENGTH_SHORT).show();
     }
+
 }
