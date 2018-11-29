@@ -40,10 +40,18 @@ public class MainActivity extends AppCompatActivity {
     public void displaySetA(int setA){
         TextView displayB = findViewById(R.id.textView_a_set_score);
         displayB.setText(String.valueOf(setA));
+        if(setA ==3){
+            Toast.makeText(this, "Team A win match", Toast.LENGTH_LONG).show();
+            reset();
+        }
     }
     public void displaySetB(int setB){
         TextView displayB = findViewById(R.id.textView_b_set_score);
         displayB.setText(String.valueOf(setB));
+        if(setB ==3){
+            Toast.makeText(this, "Team B win match", Toast.LENGTH_LONG).show();
+            reset();
+        }
     }
 
     public void addPointA(View v){
@@ -53,16 +61,19 @@ public class MainActivity extends AppCompatActivity {
                 if(wynikA>=15 && wynikB+2<= wynikA){
                     setA = setA+1;
                     displaySetA(setA);
-                    newSet();
-                }
+                    }
         }
         }
         if(wynikA>= 23){
             if(wynikA>=25 && wynikB+2<= wynikA){
                 setA = setA+1;
-                displaySetA(setA);
-                newSet();
-
+                if(setA==3){
+                    displaySetA(setA);
+                }
+                else {
+                    displaySetA(setA);
+                    newSet();
+                }
             }
         }
         displayPointA(wynikA);
@@ -74,16 +85,20 @@ public class MainActivity extends AppCompatActivity {
                 if(wynikB>=15 && wynikA+2<= wynikB){
                     setB = setB+1;
                     displaySetB(setB);
-                    newSet();
-                }
+                   }
             }
         }
         if(wynikB>= 23){
             if(wynikB>=25 && wynikA+2<= wynikB){
                 setB = setB+1;
-                displaySetB(setB);
-                newSet();
+                if(setB==3){
+                    displaySetB(setB);
+                }
+                else {
 
+                    displaySetB(setB);
+                    newSet();
+                }
             }
         }
         displayPointB(wynikB);
@@ -107,7 +122,13 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "all changes were used", Toast.LENGTH_SHORT).show();
         }
     }
+
     public void resetButt(View v){
+        reset();
+        Toast.makeText(this, "reset of results", Toast.LENGTH_SHORT).show();
+    }
+
+    public void reset(){
         wynikB = 0; wynikA =0; setA = 0;setB = 0;changeA = 0;changeB = 0;
         displayPointA(wynikA);
         displayPointB(wynikB);
@@ -115,8 +136,7 @@ public class MainActivity extends AppCompatActivity {
         displayChangeB(changeB);
         displaySetA(setA);
         displaySetB(setB);
-        Toast.makeText(this, "reset of results", Toast.LENGTH_SHORT).show();
-    }
+        }
     public void newSet(){
         wynikB = 0; wynikA =0; changeA = 0;changeB = 0;
         displayPointA(wynikA);
