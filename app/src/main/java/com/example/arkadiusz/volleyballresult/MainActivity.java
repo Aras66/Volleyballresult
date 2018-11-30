@@ -16,6 +16,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        displayPointA(wynikA);
+        displayPointB(wynikB);
     }
     public void displayPointA(int wynikA){
         TextView displayA = findViewById(R.id.textView_a_score_num);
@@ -41,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         TextView displayB = findViewById(R.id.textView_a_set_score);
         displayB.setText(String.valueOf(setA));
         if(setA ==3){
-            Toast.makeText(this, "Team A win match", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Team A won", Toast.LENGTH_LONG).show();
             reset();
         }
     }
@@ -49,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         TextView displayB = findViewById(R.id.textView_b_set_score);
         displayB.setText(String.valueOf(setB));
         if(setB ==3){
-            Toast.makeText(this, "Team B win match", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Team B won", Toast.LENGTH_LONG).show();
             reset();
         }
     }
