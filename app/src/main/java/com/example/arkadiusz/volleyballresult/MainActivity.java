@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void addPointA(View v){
-        scoreA = scoreA + 1;
+        scoreA += 1;
         if(setA==2 && setB==2){
             if(scoreA >= 13){
                 if(scoreA >=15 && scoreB +2<= scoreA){
@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         displayPointA(scoreA);
     }
     public void addPointB(View v){
-        scoreB = scoreB + 1;
+        scoreB++;
         if(setA==2 && setB==2){
             if(scoreB >= 13){
                 if(scoreB >=15 && scoreA +2<= scoreB){
