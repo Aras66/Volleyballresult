@@ -3,21 +3,20 @@ package com.example.arkadiusz.volleyballresult;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.TextureView;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    int wynikA = 0, wynikB = 0, setA = 0,setB = 0,changeA = 0, changeB = 0;
+    int scoreA = 0, scoreB = 0, setA = 0,setB = 0,changeA = 0, changeB = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        displayPointA(wynikA);
-        displayPointB(wynikB);
+        displayPointA(scoreA);
+        displayPointB(scoreB);
     }
     public void displayPointA(int wynikA){
         TextView displayA = findViewById(R.id.textView_a_score_num);
@@ -57,17 +56,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void addPointA(View v){
-        wynikA = wynikA + 1;
+        scoreA = scoreA + 1;
         if(setA==2 && setB==2){
-            if(wynikA>= 13){
-                if(wynikA>=15 && wynikB+2<= wynikA){
+            if(scoreA >= 13){
+                if(scoreA >=15 && scoreB +2<= scoreA){
                     setA = setA+1;
                     displaySetA(setA);
                     }
+            }
         }
-        }
-        if(wynikA>= 23){
-            if(wynikA>=25 && wynikB+2<= wynikA){
+        if(scoreA >= 23){
+            if(scoreA >=25 && scoreB +2<= scoreA){
                 setA = setA+1;
                 if(setA==3){
                     displaySetA(setA);
@@ -78,20 +77,20 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
-        displayPointA(wynikA);
+        displayPointA(scoreA);
     }
     public void addPointB(View v){
-        wynikB = wynikB + 1;
+        scoreB = scoreB + 1;
         if(setA==2 && setB==2){
-            if(wynikB>= 13){
-                if(wynikB>=15 && wynikA+2<= wynikB){
+            if(scoreB >= 13){
+                if(scoreB >=15 && scoreA +2<= scoreB){
                     setB = setB+1;
                     displaySetB(setB);
                    }
             }
         }
-        if(wynikB>= 23){
-            if(wynikB>=25 && wynikA+2<= wynikB){
+        if(scoreB >= 23){
+            if(scoreB >=25 && scoreA +2<= scoreB){
                 setB = setB+1;
                 if(setB==3){
                     displaySetB(setB);
@@ -103,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
-        displayPointB(wynikB);
+        displayPointB(scoreB);
     }
     public void addChangeA(View v){
         if(changeA<6){
@@ -131,21 +130,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void reset(){
-        wynikB = 0; wynikA =0; setA = 0;setB = 0;changeA = 0;changeB = 0;
-        displayPointA(wynikA);
-        displayPointB(wynikB);
+        scoreB = 0; scoreA =0; setA = 0;setB = 0;changeA = 0;changeB = 0;
+        displayPointA(scoreA);
+        displayPointB(scoreB);
         displayChangeA(changeA);
         displayChangeB(changeB);
         displaySetA(setA);
         displaySetB(setB);
         }
     public void newSet(){
-        wynikB = 0; wynikA =0; changeA = 0;changeB = 0;
-        displayPointA(wynikA);
-        displayPointB(wynikB);
+        scoreB = 0; scoreA =0; changeA = 0;changeB = 0;
+        displayPointA(scoreA);
+        displayPointB(scoreB);
         displayChangeA(changeA);
         displayChangeB(changeB);
         Toast.makeText(this, "new set", Toast.LENGTH_SHORT).show();
     }
-
 }
